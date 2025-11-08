@@ -1,7 +1,8 @@
-import React from 'react'
-import ProductCard from '../ui/ProductCard'
-import useGetAxios from '../../hooks/useGetAxios'
+import { useState } from 'react';
+import ProductCard from '../ui/ProductCard';
+import useGetAxios from '../../hooks/useGetAxios';
 
+/*
 const MOCK_PRODUCTS = [
   {
     id: 1,
@@ -37,10 +38,12 @@ const MOCK_PRODUCTS = [
     categoriaId: 3,
   },
 ]
+*/
 
 const HomeView = () => {
+  const [page, setPage] = useState(1);
   //los custom Hook tienen que usarse dentro de un componente
-  const { data, error } = useGetAxios(`https://simple-api-2ivd.onrender.com/productos`)
+  const { data, error } = useGetAxios(`https://simple-api-2ivd.onrender.com/productos?page=${page}&limit=9`);
 
   console.log(data)
 
@@ -67,6 +70,15 @@ const HomeView = () => {
         {data?.productos && data.productos.map((p) => (
           <ProductCard key={p.id} producto={p} />
         ))}
+      </div>
+      {/* botones paginación */}
+      <div className='flex justify-between mt-6'>
+        <button className='btn btn-primary'>
+          Página Previa
+        </button>
+        <button className='btn btn-primary'>
+          Página Siguiente
+        </button>
       </div>
     </div>
   )
