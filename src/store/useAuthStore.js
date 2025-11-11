@@ -3,10 +3,13 @@ import { saveStorage, getStorage, removeStorage } from "../utils/localStorageUti
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const KEY_AUTH = "auth_store";
+
 const useAuthStore = create((set) => ({
-  user: null, //info Usuario nombre, email
-  token: null, //JWT
-  isLogged: false, //para saber si esta loggueado el usuario
+  //leemos el LS y si lo obtenemos estamos buscando acceder a la propiedad user, usamos ?. para validar que existe la propiedad
+  user: getStorage(KEY_AUTH)?.user || null, //info Usuario nombre, email
+  token: getStorage(KEY_AUTH)?.token ||null, //JWT
+  isLogged: getStorage(KEY_AUTH)?.isLogged || false, //para saber si esta loggueado el usuario
 
   /**
    * @param { nombre, email, password }
@@ -31,6 +34,8 @@ const useAuthStore = create((set) => ({
       console.log(response)
       if(response.status === 200) {
         const { token, usuario } = response.data;
+        //guardar en el LS
+        saveStorage(KEY_AUTH, { token: token, user: usuario, isLogged: true});
         toast.success("Bienvenido!");
         //aquí no necesitamos acceder la información del state, así que podemos invocar directamente a set y darle en un objeto cuál es el cambio en el estado
         set({ user: usuario, token: token, isLogged: true })
