@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import useAuthStore from "../../store/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 const LoginView = () => {
   // const nameRef = useRef();
@@ -8,13 +9,21 @@ const LoginView = () => {
 
   const { loginUser } = useAuthStore();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
+      const email = emailRef.current.value;
+      const password = passwordRef.current.value;
 
-    await loginUser(email, password);
+      await loginUser(email, password);
+      navigate('/')
+    } catch (error) {
+      console.log(error);
+    }
+
   };
 
   return (
