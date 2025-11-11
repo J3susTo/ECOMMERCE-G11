@@ -8,7 +8,7 @@ const KEY_AUTH = "auth_store";
 const useAuthStore = create((set) => ({
   //leemos el LS y si lo obtenemos estamos buscando acceder a la propiedad user, usamos ?. para validar que existe la propiedad
   user: getStorage(KEY_AUTH)?.user || null, //info Usuario nombre, email
-  token: getStorage(KEY_AUTH)?.token ||null, //JWT
+  token: getStorage(KEY_AUTH)?.token || null, //JWT
   isLogged: getStorage(KEY_AUTH)?.isLogged || false, //para saber si esta loggueado el usuario
 
   /**
