@@ -45,7 +45,8 @@ const Navbar = () => {
               {totalCart}
             </span>
           </li>
-          <li><a>Contacto</a></li>
+          <li><Link to="/register">Registrate</Link></li>
+          <li><Link to="/login">Ingresa</Link></li>
         </ul>
       </div>
 
