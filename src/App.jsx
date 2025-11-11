@@ -2,6 +2,7 @@ import { ToastContainer } from 'react-toastify'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './modules/ui/Navbar'
 import HomeView from './modules/Home/HomeView'
+import RegisterView from './modules/Auth/RegisterView'
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomeView />} />
+        <Route path="/register" element={<RegisterView />} />
       </Routes>
 
       <ToastContainer />
