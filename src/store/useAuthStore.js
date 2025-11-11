@@ -46,6 +46,10 @@ const useAuthStore = create((set) => ({
     } catch (error) {
       console.log(error);
     }
+  },
+  logout: () => {
+    removeStorage(KEY_AUTH);
+    set({ user: null, token: null, isLogged: false });
   }
 }))
 

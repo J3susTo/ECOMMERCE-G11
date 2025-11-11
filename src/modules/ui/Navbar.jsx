@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 // - Lado derecho: avatar de usuario con dropdown de opciones
 const Navbar = () => {
   const { cart } = useCartStore();
-  const { isLogged } = useAuthStore();
+  const { isLogged, logout } = useAuthStore();
 
   const totalCart = cart.reduce((acumulator, item) => {
     return acumulator + item.cantidad;
@@ -84,7 +84,8 @@ const Navbar = () => {
           <li>
             <Link to="/">Inicio</Link>
           </li>
-          {/* <li className="indicator">
+          {/*
+          <li className="indicator">
             <Link to="/cart">Carrito</Link>
             <span className="indicator-item badge badge-xs badge-primary">
               {totalCart}
@@ -95,7 +96,8 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/login">Ingresa</Link>
-          </li> */}
+          </li>
+          */}
           {isLogged && (
               <li className="indicator">
                 <Link to="/cart">Carrito</Link>
@@ -144,7 +146,9 @@ const Navbar = () => {
               <a>Pedidos</a>
             </li>
             <li>
-              <a>Cerrar sesión</a>
+              <button onClick={logout}>
+                Cerrar Sesión
+              </button>
             </li>
           </ul>
         </div>
