@@ -8,6 +8,10 @@ import { Link } from 'react-router-dom'
 const Navbar = () => {
   const { cart } = useCartStore();
 
+  const totalCart = cart.reduce((acumulator, item) => {
+    return acumulator + item.cantidad;
+  }, 0)
+
   return (
     <div className="navbar bg-base-100 border-b">
       {/* Sección izquierda: logo + menú móvil */}
@@ -38,7 +42,7 @@ const Navbar = () => {
           <li className='indicator'>
             <a>Productos</a>
             <span className='indicator-item badge badge-xs badge-primary'>
-              {cart.length}
+              {totalCart}
             </span>
           </li>
           <li><a>Contacto</a></li>
