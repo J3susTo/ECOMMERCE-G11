@@ -1,10 +1,12 @@
 import useAuthStore from "../../../store/useAuthStore"
 import { Navigate } from "react-router-dom"
+import isTokenExpired from "../../../utils/jwtUtils";
 
 const ProtectedRoute = (props) => {
-  const { isLogged } = useAuthStore();
+  const { isLogged, token } = useAuthStore();
 
-  console.log("Desde ProtectedRoute:", isLogged)
+  // console.log("Desde ProtectedRoute:", isLogged)
+  console.log(isTokenExpired(token))
 
   return (
     <>
