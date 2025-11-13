@@ -76,7 +76,7 @@ const HomeView = () => {
         </div>
       </div>
 
-      <h2 className="mt-8 mb-4 text-xl font-semibold">Destacados</h2>
+      <h2 className="mt-8 mb-4 text-xl font-semibold">Productos destacados</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {/* operador de encadenamiento opcional */}
         {/* validamos que la propiedad productos exista, recodermos que data originalmente es null */}
