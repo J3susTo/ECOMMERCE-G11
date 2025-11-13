@@ -1,8 +1,13 @@
-import useCartStore from "../../store/useCartStore"
+import useCartStore from "../../store/useCartStore";
 
 const CheckOutView = () => {
-
   const { cart } = useCartStore();
+
+  const totalCart = cart
+    .reduce((acum, item) => {
+      return acum + item.cantidad * item.precio;
+    }, 0)
+    .toFixed(2);
 
   return (
     <div className='max-w-7xl mx-auto px-3 md:px-6 py-6"'>
@@ -24,11 +29,23 @@ const CheckOutView = () => {
                 <tr key={item.id}>
                   <td className="">
                     <div className="w-10 h-10 rounded overflow-hidden">
-                      <img src={item.imagen} alt={item.nombre} className="w-full h-full object-cover"/>
+                      <img
+                        src={item.imagen}
+                        alt={item.nombre}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </td>
+                  <td>{item.nombre}</td>
+                  <td>{item.cantidad} Unids.</td>
+                  <td>S/ {`${item.precio.toFixed(2)}`}</td>
+                  <td>S/ {`${(item.precio * item.cantidad).toFixed(2)}`}</td>
                 </tr>
               ))}
+              <tr className="font-semibold">
+                <td colspan="4">TOTAL</td>
+                <td>S/ {totalCart}</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -37,7 +54,7 @@ const CheckOutView = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckOutView
+export default CheckOutView;
