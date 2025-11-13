@@ -78,7 +78,24 @@ const CheckOutView = () => {
             </div>
             <div className="mb-3 flex flex-col gap-2">
               <label className="text-sm text-gray-300">Dirección</label>
-              <input type="text" placeholder="Av. arenales" className="input w-full" />
+              <input
+                type="text"
+                placeholder="Av. arenales"
+                className="input w-full"
+                {...register("address", {
+                  // requerido, minLength:6, maxLength:30
+                  required: "La dirección es obligatoria",
+                  minLength: {
+                    value: 6,
+                    message: "La dirección tiene que ser de al menos 6 carácteres"
+                  },
+                  maxLength: {
+                    value: 30,
+                    message: "La dirección tiene que ser no mayor de 30 carácteres"
+                  },
+                })}
+              />
+              {errors && (<p className="text-xs text-red-600">{errors?.address?.message}</p>)}
             </div>
             <div className="mb-3 flex flex-col gap-2">
               <label className="text-sm text-gray-300">Teléfono</label>
