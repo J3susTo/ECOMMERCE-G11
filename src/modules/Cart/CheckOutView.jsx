@@ -2,12 +2,10 @@ import useCartStore from "../../store/useCartStore";
 
 const CheckOutView = () => {
   const { cart } = useCartStore();
-
   const totalCart = cart
     .reduce((acum, item) => {
       return acum + item.cantidad * item.precio;
-    }, 0)
-    .toFixed(2);
+    }, 0).toFixed(2);
 
   return (
     <div className='max-w-7xl mx-auto px-3 md:px-6 py-6"'>
@@ -51,6 +49,21 @@ const CheckOutView = () => {
         </div>
         <div className="col-span-1 md:col-span-5">
           <h3 className="font-semibold text-lg">Formulario</h3>
+          <form className="mt-4">
+            <div className="mb-3 flex flex-col gap-2">
+              <label className="text-sm text-gray-300">Nombres y Apellidos</label>
+              <input type="text" placeholder="Juan Perez" className="input w-full" />
+            </div>
+            <div className="mb-3 flex flex-col gap-2">
+              <label className="text-sm text-gray-300">Dirección</label>
+              <input type="text" placeholder="Av. arenales" className="input w-full" />
+            </div>
+            <div className="mb-3 flex flex-col gap-2">
+              <label className="text-sm text-gray-300">Teléfono</label>
+              <input type="tel" placeholder="999999999" className="input w-full" />
+            </div>
+            <button className="btn btn-primary" type="submit">Guardar</button>
+          </form>
         </div>
       </div>
     </div>
