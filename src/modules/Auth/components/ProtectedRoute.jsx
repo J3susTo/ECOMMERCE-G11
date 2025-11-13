@@ -6,11 +6,11 @@ const ProtectedRoute = (props) => {
   const { isLogged, token } = useAuthStore();
 
   // console.log("Desde ProtectedRoute:", isLogged)
-  console.log(isTokenExpired(token))
+  const authenticated = isLogged && !isTokenExpired(token);
 
   return (
     <>
-      { isLogged ? props.children : <Navigate to="/login" />}
+      { authenticated ? props.children : <Navigate to="/login" />}
     </>
   )
 }
